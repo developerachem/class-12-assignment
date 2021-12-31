@@ -1,7 +1,6 @@
 /**
  * This Is Cur Calculetor
  */
-
 const fullForm = document.querySelector('#full-form');
 const bdAmount = document.querySelector('#curamount');
 const countryCode = document.querySelector('#country-value');
@@ -76,7 +75,7 @@ fullForm.addEventListener('submit', (e) => {
 
 
 /**
- * This IS Age And Marage Calculetor 
+ * This IS Age And Marage Calculetor -----------------------------------------------------------------------------------------------------------------------
  */
 
 
@@ -149,7 +148,7 @@ ageForm.addEventListener('submit', (e) => {
 
 
 /**
- * This Is Form Validetionn
+ * This Is Form Validetionn---------------------------------------------------------------------------------------------------------------------------------
  */
 
 const formFild = document.querySelector('#input-form');
@@ -165,6 +164,10 @@ const formMassage = document.querySelector('#formMassage');
 const msgMassage = document.querySelector('#msgMassage');
 const finelMassage = document.querySelector('#form-massage');
 
+
+/**
+ * This Is Form Name Blue Event
+ */
 formName.addEventListener('blur', () => {
 
     if (formName.value === "") {
@@ -174,11 +177,25 @@ formName.addEventListener('blur', () => {
         formName.style.border = "";
 
     }
+
 })
+
+/**
+ * This Is Form Name KeyUp Event
+ */
 formName.addEventListener('keyup', () => {
     formName.style.border = "";
     nameMassage.innerHTML = ""
+
+    if (/^[^0-9]*$/.test(formName.value) === false || formName.value === "") {
+        formName.style.border = "1px solid red";
+        nameMassage.innerHTML = "*Only Name. No Any Number !"
+    }
 })
+
+/**
+ * This Is Form Username Blur Event
+ */
 formUname.addEventListener('blur', () => {
 
     if (formUname.value === "") {
@@ -189,10 +206,34 @@ formUname.addEventListener('blur', () => {
 
     }
 })
+
+/**
+ * This Is Form User Name KeyUp Event
+ */
 formUname.addEventListener('keyup', () => {
+    let userName = formUname.value ;
     formUname.style.border = "";
     uNameMassage.innerHTML = ""
+    if( userName === "" ){
+        formUname.style.border = "1px solid red";
+        uNameMassage.innerHTML = "*Username field Required!"
+    }else if( userName.length < 6 ){
+        uNameMassage.innerHTML = "* Type Username Mast Munimum 6 Carectar  !"
+        formUname.style.border = "1px solid red";
+    }else if( userName.length > 16 ){
+        uNameMassage.innerHTML = "* Type Username Mast Maxumym 16 CArectur !"
+        formUname.style.border = "1px solid red";
+    }else if(/^[a-z\.]{6,16}$/.test(userName) === false ){
+        uNameMassage.innerHTML = "* Type Username Mast Small Latter And (.)!"
+        formUname.style.border = "1px solid red";
+    }else{
+        formUname.style.border = "1px solid green";
+    }
 })
+
+/**
+ * This Is Form Email Blur Event
+ */
 formEmail.addEventListener('blur', () => {
 
     if (formEmail.value === "") {
@@ -203,10 +244,25 @@ formEmail.addEventListener('blur', () => {
 
     }
 })
+
+/**
+ * This Is Form Email KeyUp Event
+ */
 formEmail.addEventListener('keyup', () => {
     formEmail.style.border = "";
     emailMassage.innerHTML = ""
+    if( formEmail.value === "" ){
+        formEmail.style.border = "1px solid red";
+        emailMassage.innerHTML = "*Email field Required !"
+    }else if( /^[a-z0-9-\.]+@[a-z]+\.[a-z-.]{2,}$/.test(formEmail.value) === false ){
+        formEmail.style.border = "1px solid red";
+        emailMassage.innerHTML = "*Type a Valided Email!"
+    }
 })
+
+/**
+ * This Is Form Number Blur Event
+ */
 formNumber.addEventListener('blur', () => {
 
     if (formNumber.value === "") {
@@ -217,11 +273,27 @@ formNumber.addEventListener('blur', () => {
 
     }
 })
+
+/**
+ * This Is Form Number KeyUp Event
+ */
 formNumber.addEventListener('keyup', () => {
-    formNumber.style.border = "";
-    numbaeMassage.innerHTML = ""
+    formNumber.style.border = "1px solid green";
+    numbaeMassage.innerHTML = "";
+    if(formNumber.value === ""){
+        formNumber.style.border = "1px solid red";
+        numbaeMassage.innerHTML = "*Number field Required !";
+    }else if(/^(01|8801|\+8801)\d{9}$/.test(formNumber.value) === false ){
+        formNumber.style.border = "1px solid red";
+        numbaeMassage.innerHTML = "*Type Only Number!";
+    }else{
+        formNumber.style.border = "1px solid green";
+    }
 })
 
+/**
+ * This Is TextArea blur Event
+ */
 formMassage.addEventListener('blur', () => {
 
     if (formMassage.value === "") {
@@ -233,6 +305,10 @@ formMassage.addEventListener('blur', () => {
     }
 })
 
+/**
+ * This Is TextArea KeyUp Event
+ */
+
 formMassage.addEventListener('keyup', () => {
     let massage = formMassage.value;
     if (massage.length <= 20) {
@@ -241,22 +317,20 @@ formMassage.addEventListener('keyup', () => {
     } else if (massage.length > 50) {
         msgMassage.innerHTML = 'Righte Massage In Maximum 50 Words';
         formMassage.style.border = "1px solid red";
-    } else if (massage.length > 20 && massage.length <= 50) {
+    } else {
         msgMassage.innerHTML = "";
-        formMassage.style.border = "2px solid green";
-    }else{
-        msgMassage.innerHTML = "";
-        
+        formMassage.style.border = "1px solid green";
     }
 })
-=
 
-
+/**
+ * This Is Total Form Sumbit Event
+ */
 formFild.addEventListener('submit', (e) => {
     e.preventDefault();
 
- 
-    if( formName.value === "" || formUname.value === "" || formEmail.value === "" || formNumber.value === "" || formMassage.value === "" ){
+
+    if (formName.value === "" && formUname.value === "" && formEmail.value === "" && formNumber.value === "" && formMassage.value === "") {
 
         formName.style.border = "1px solid red";
         nameMassage.innerHTML = "*Name field Required !"
@@ -272,9 +346,38 @@ formFild.addEventListener('submit', (e) => {
 
         formMassage.style.border = "1px solid red";
         msgMassage.innerHTML = "*Massage field Required !";
+
+        finelMassage.innerHTML = "";
+
+    } else if(/^[^0-9]*$/.test(formName.value) === false || formName.value === "" ) {
+        formName.style.border = "1px solid red";
+        nameMassage.innerHTML = "*Only Name. No Any Number !"
+    }else if( /^[a-z\.]{6,16}$/.test(formUname.value) === false || formUname.value === "" ){
+        formUname.style.border = "1px solid red";
+        uNameMassage.innerHTML = "* Username field Required !"
+    }else if( /^[a-z0-9-\.]+@[a-z]+\.[a-z-.]{2,}$/.test(formEmail.value) === false ){
+        formEmail.style.border = "1px solid red";
+        emailMassage.innerHTML = "*Email field Required !"
+    }else if(/^(01|8801|\+8801)[0-9]{9}$/.test(formNumber.value) === false){
+        formNumber.style.border = "1px solid red";
+        numbaeMassage.innerHTML = "*Number field Required !"
+    }else{
+        finelMassage.innerHTML = (`<p class="alert alert-success"> 
         
-
-
+        Name        : ${formName.value} . <br>
+        UserName    : @${formUname.value} . <br>
+        Gnail       : <a href="#">${formEmail.value}</a> . <br>
+        Phone Number: ${formNumber.value} .<br>
+        Massage     : ${formMassage.value} 
+        
+        </p> `)
+        formName.value = "";
+        formUname.value = "";
+        formEmail.value = "";
+        formNumber.value = "";
+        formMassage.value = "";
     }
+
+
 
 })
