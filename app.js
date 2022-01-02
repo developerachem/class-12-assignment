@@ -85,6 +85,18 @@ const ageNameMassage = document.querySelector('#name-massage');
 const ageYear = document.querySelector('#age-year');
 const ageYearMassage = document.querySelector('#year-massage');
 const ageMassage = document.querySelector('#age-massage');
+const ageCheckbox = document.querySelector('#ageCheckbox');
+const ageCheckboxMassage = document.querySelector('#ageCheckboxMassage');
+
+ageCheckbox.addEventListener('click',() => {
+    if (ageCheckbox.value === ageCheckbox.children[0].value){
+        ageCheckboxMassage.innerHTML = '*Gender Filde Required ! '
+        ageCheckbox.style.border = '1px solid red'
+    }else{
+        ageCheckboxMassage.innerHTML = '';
+        ageCheckbox.style.border = '';
+    }
+})
 
 ageName.addEventListener('blur', () => {
     if (ageName.value === "") {
@@ -130,19 +142,30 @@ ageForm.addEventListener('submit', (e) => {
     let ageNameValid = /^[^0-9]*$/;
     let ageYearValid = /^[0-9]{4}$/;
 
-    if (ageName.value === "" && ageYear.value === "") {
+    if (ageName.value === "" && ageYear.value === "" && ageCheckbox.value === ageCheckbox.children[0].value) {
         ageNameMassage.innerHTML = `*Name Filde Required !`
         ageName.style.border = "1px solid red";
         ageYearMassage.innerHTML = `*Birth Filde Required !`
         ageYear.style.border = "1px solid red";
+        ageCheckboxMassage.innerHTML = '*Gender Filde Required ! '
+        ageCheckbox.style.border = '1px solid red'
     } else if (ageNameValid.test(ageName.value) === false) {
         ageNameMassage.innerHTML = `*No Number Plise Only Your Name !`
     } else if (ageYearValid.test(ageYear.value) === false) {
         ageYearMassage.innerHTML = `*Type Your Birth In 4 Digit !`
-    } else {
+    } else if(ageCheckbox.value === ageCheckbox.children[0].value){
+        ageCheckboxMassage.innerHTML = '*Gender Filde Required ! '
+        ageCheckbox.style.border = '1px solid red'
+    }else if( ageCheckbox.value === ageCheckbox.children[3].value ){
+        ageMassage.innerHTML = hizla(ageName.value,ageYear.value)
+        ageName.value = "";
+        ageYear.value = "";
+        ageCheckbox.value = ageCheckbox.children[0].value;
+    }else {
         ageMassage.innerHTML = ageCal(ageName.value, ageYear.value)
         ageName.value = "";
         ageYear.value = "";
+        ageCheckbox.value = ageCheckbox.children[0].value;
     }
 })
 
@@ -187,7 +210,10 @@ formName.addEventListener('keyup', () => {
     formName.style.border = "";
     nameMassage.innerHTML = ""
 
-    if (/^[^0-9]*$/.test(formName.value) === false || formName.value === "") {
+    if(formName.value === ""){
+        formName.style.border = "1px solid red";
+        nameMassage.innerHTML = "*Name field Required !"
+    }else if (/^[^0-9]*$/.test(formName.value) === false) {
         formName.style.border = "1px solid red";
         nameMassage.innerHTML = "*Only Name. No Any Number !"
     }
@@ -311,7 +337,11 @@ formMassage.addEventListener('blur', () => {
 
 formMassage.addEventListener('keyup', () => {
     let massage = formMassage.value;
-    if (massage.length <= 20) {
+
+    if(massage === ""){
+        formMassage.style.border = "1px solid red";
+        msgMassage.innerHTML = "*Massage field Required !";
+    }else if (massage.length <= 20) {
         msgMassage.innerHTML = 'Righte Massage In Minimam 20 Words';
         formMassage.style.border = "1px solid red";
     } else if (massage.length > 50) {

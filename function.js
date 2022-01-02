@@ -13,7 +13,7 @@ function ageCal (name, year) {
     if( year > date.getFullYear() ){
         return ` <p class="alert alert-danger"> ${name} Vai Oi Mia Batpari Koro ?? ${date.getFullYear()} Sal ki ekhno Ovar Hoiche ? </p> `
     }else{
-        return ` <p class="alert alert-${marage.style}"> Hello ${name} You Are ${age} Years Old and ${marage.status} </p> `
+        return ` <p class="alert alert-${marage.style}"> Hello ${name} You Are ${age} Years Old and ${genderCheck()}  ${marage.status} </p> `
     }
 }
 
@@ -57,4 +57,33 @@ function marageCheck (age) {
         } 
     }
 
+}
+
+
+
+/**
+ * This Is genderCheck
+ * @returns 
+ */
+function genderCheck( ) {
+    let gender = document.querySelector('#ageCheckbox');
+
+
+    if( gender.value === gender.children[1].value ){
+        return ' You Are Male '
+    }else if( gender.value === gender.children[2].value ){
+        return ' You Are Female '
+    }
+}
+/**
+ * This IS Hizla Check
+ * @param {*} name 
+ * @param {*} year 
+ * @returns 
+ */
+function hizla (name,year) {
+    let age = date.getFullYear() - year ;
+    if( ageCheckbox.value === ageCheckbox.children[3].value ){
+        return ` <p class="alert alert-danger">Hello ${name} You Are ${age} Years Old And Wee Are Sorry Apni Chele Naki Meye Age Seta Bolen Naile Aponake Biye Deya jabe na </p>`
+    }
 }
