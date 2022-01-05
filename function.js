@@ -56,7 +56,6 @@ function marageCheck (age) {
             style   : 'dark'
         } 
     }
-
 }
 
 
@@ -67,14 +66,14 @@ function marageCheck (age) {
  */
 function genderCheck( ) {
     let gender = document.querySelector('#ageCheckbox');
-
-
     if( gender.value === gender.children[1].value ){
         return ' You Are Male '
     }else if( gender.value === gender.children[2].value ){
         return ' You Are Female '
     }
 }
+
+
 /**
  * This IS Hizla Check
  * @param {*} name 
